@@ -21,7 +21,8 @@ const UserInfoCard = ({ image, name, designetion, company }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
-    margin: 16,
+    marginHorizontal: 16,
+    marginVertical: 8,
     gap: 20,
     flexDirection: 'row',
     alignItems: 'center',
