@@ -1,17 +1,17 @@
 import { View, Text, StyleSheet, Image } from "react-native"
 
-const UserInfoCard = ({ image }) => {
+const UserInfoCard = ({ image, name, designetion, company }) => {
   return (
     <View style={styles.container}>
       <Image
-        source={{ uri: 'https://dummyjson.com/icon/oliviaw/128' }}
+        source={{ uri: image }}
         style={styles.image}
       />
       <View style={styles.infoContainer}>
-        <Text style={styles.title}> User Name </Text>
+        <Text style={styles.title}>{name}</Text>
         <View>
-          <Text style={styles.description}> 23 male</Text>
-          <Text style={styles.description}> Antarac social private limited</Text>
+          <Text style={styles.description}>{designetion}</Text>
+          <Text style={styles.description}>{company}</Text>
         </View>
       </View>
     </View>

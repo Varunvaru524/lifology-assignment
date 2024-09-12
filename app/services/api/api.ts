@@ -13,6 +13,7 @@ import Config from "../../config"
 import type {
   ApiConfig,
 } from "./api.types"
+import axios from 'axios'
 
 /**
  * Configuring the apisauce instance.
@@ -48,3 +49,15 @@ export class Api {
 
 // Singleton instance of the API for convenience
 export const api = new Api()
+
+
+export const getUsers = (payload) => {
+  const { limit, skip } = payload || {}
+  return axios.get(`https://dummyjson.com/users?limit=${limit}&skip=${skip}`)
+}
+
+
+export const getPosts = (payload) => {
+  const { userId } = payload || {}
+  return axios.get(`https://dummyjson.com/users/${userId}/posts`)
+}
