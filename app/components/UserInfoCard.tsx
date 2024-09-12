@@ -1,27 +1,35 @@
-import { View, Text, StyleSheet, Image } from "react-native"
+import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from "react-native"
 import caretRight from '../../assets/icons/caretRight.png'
+import { useNavigation } from "@react-navigation/native"
 
-const UserInfoCard = ({ image, name, designetion, company }) => {
+const UserInfoCard = ({ userId, image, name, designetion, company }) => {
+  const navigation = useNavigation()
+  const onPress = () => {
+    navigation.navigate('UserPostsScreen', { userId })
+  }
+
   return (
-    <View style={styles.container}>
-      <Image
-        source={{ uri: image }}
-        style={styles.image}
-      />
-      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexGrow: 1 }}>
-        <View style={styles.infoContainer}>
-          <Text style={styles.title}>{name}</Text>
-          <View>
-            <Text style={styles.description}>{designetion}</Text>
-            <Text style={styles.description}>{company}</Text>
-          </View>
-        </View>
+    <TouchableWithoutFeedback onPress={onPress}>
+      <View style={styles.container}>
         <Image
-          source={caretRight}
-          style={styles.caretRigth}
+          source={{ uri: image }}
+          style={styles.image}
         />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexGrow: 1 }}>
+          <View style={styles.infoContainer}>
+            <Text style={styles.title}>{name}</Text>
+            <View>
+              <Text style={styles.description}>{designetion}</Text>
+              <Text style={styles.description}>{company}</Text>
+            </View>
+          </View>
+          <Image
+            source={caretRight}
+            style={styles.caretRigth}
+          />
+        </View>
       </View>
-    </View>
+    </TouchableWithoutFeedback>
   )
 }
 

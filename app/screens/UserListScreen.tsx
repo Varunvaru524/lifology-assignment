@@ -4,7 +4,7 @@ import { getUsers } from 'app/services/api'
 import { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet } from 'react-native'
 
-const UserListScreen = ({ navigation, routes }) => {
+const UserListScreen = ({ navigation, route }) => {
   const [users, setUsers] = useState([])
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
@@ -65,6 +65,7 @@ const UserListScreen = ({ navigation, routes }) => {
         renderItem={({ item, index, separators }) => {
           return (
             <UserInfoCard
+              userId={item.id}
               name={item.firstName + ' ' + item.lastName}
               image={item.image}
               company={item.company.name}

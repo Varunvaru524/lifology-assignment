@@ -1,6 +1,7 @@
-import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet } from 'react-native'
 
-const UserPostsScreen = ({ navigation, routes }) => {
+const UserPostsScreen = ({ navigation, route }) => {
+  console.log(route.params.userId)
   return (
     <SafeAreaView style={styles.container}>
     </SafeAreaView>
