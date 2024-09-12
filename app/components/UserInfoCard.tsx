@@ -1,4 +1,5 @@
 import { View, Text, StyleSheet, Image } from "react-native"
+import caretRight from '../../assets/icons/caretRight.png'
 
 const UserInfoCard = ({ image, name, designetion, company }) => {
   return (
@@ -7,12 +8,18 @@ const UserInfoCard = ({ image, name, designetion, company }) => {
         source={{ uri: image }}
         style={styles.image}
       />
-      <View style={styles.infoContainer}>
-        <Text style={styles.title}>{name}</Text>
-        <View>
-          <Text style={styles.description}>{designetion}</Text>
-          <Text style={styles.description}>{company}</Text>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', flexGrow: 1 }}>
+        <View style={styles.infoContainer}>
+          <Text style={styles.title}>{name}</Text>
+          <View>
+            <Text style={styles.description}>{designetion}</Text>
+            <Text style={styles.description}>{company}</Text>
+          </View>
         </View>
+        <Image
+          source={caretRight}
+          style={styles.caretRigth}
+        />
       </View>
     </View>
   )
@@ -23,6 +30,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     marginHorizontal: 16,
     marginVertical: 8,
+    padding: 8,
     gap: 20,
     flexDirection: 'row',
     alignItems: 'center',
@@ -35,7 +43,11 @@ const styles = StyleSheet.create({
   image: {
     height: 96,
     width: 96,
-    borderRadius: 96
+    borderRadius: 96,
+  },
+  caretRigth: {
+    height: 30,
+    width: 30,
   },
   infoContainer: {
     gap: 8,
