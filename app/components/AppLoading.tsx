@@ -4,18 +4,14 @@ import { View, StyleSheet, ActivityIndicator } from 'react-native';
 /**
  * A loading component for the app
  */
-function AppLoading({ visible }) {
-
-    return (
-      <View style={styles.defaultContainer}>
-        <ActivityIndicator animating={visible} size='large' />
-      </View>
-    )
+function AppLoading({ visible = false }) {
+  return (
+    <View style={styles.defaultContainer}>
+      <ActivityIndicator animating={visible} size='large' />
+    </View>
+  )
 }
 
-AppLoading.defaultProps = {
-  visible: false
-}
 
 const styles = StyleSheet.create({
   submitContainer: {

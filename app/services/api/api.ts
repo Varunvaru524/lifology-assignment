@@ -51,9 +51,10 @@ export class Api {
 export const api = new Api()
 
 
-export const getUsers = (payload) => {
-  const { limit, skip } = payload || {}
-  return axios.get(`https://dummyjson.com/users?limit=${limit}&skip=${skip}`)
+export const getUsers = (page = 0) => {
+  const limit = 10
+  const skip = (page - 1) * limit;
+  return axios.get(`https://dummyjson.com/users`, { params: { limit: limit, skip: skip } })
 }
 
 

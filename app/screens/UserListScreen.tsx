@@ -2,7 +2,7 @@ import AppLoading from 'app/components/AppLoading'
 import UserInfoCard from 'app/components/UserInfoCard'
 import { getUsers } from 'app/services/api'
 import { useEffect, useState } from 'react'
-import { FlatList, SafeAreaView, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet } from 'react-native'
 
 const UserListScreen = ({ navigation, routes }) => {
   const [users, setUsers] = useState([])
@@ -12,7 +12,7 @@ const UserListScreen = ({ navigation, routes }) => {
   const [page, setPage] = useState(1)
 
   useEffect(() => {
-    getUsers({ limit: 10, skip: 0 })
+    getUsers()
       .then((resolve) => {
         setUsers(resolve.data.users)
         setLoading(false);
@@ -22,6 +22,38 @@ const UserListScreen = ({ navigation, routes }) => {
         setLoading(false);
       })
   }, [])
+
+  useEffect(() => {
+    if (page > 1) {
+      setLoadingMore(true)
+      getUsers(page)
+        .then(resolve => {
+          resolve.data?.users?.length > 0 && setUsers([...users, ...resolve.data.users])
+          setLoadingMore(false)
+        })
+        .catch(reject => { console.log('Error while getting more users'); setLoadingMore(false); })
+    }
+  }, [page])
+
+  // Function handers
+  const handleRefresh = () => {
+    setRefreshing(true)
+    getUsers()
+      .then(resolve => {
+        setUsers(resolve.data.users)
+        setPage(1)
+        setRefreshing(false)
+      })
+      .catch(reject => {
+        setPage(1)
+        setRefreshing(false)
+        console.log('Error while refreshing user list')
+      })
+  }
+
+  const footerComponent = () => {
+    return <ActivityIndicator size='large' animating={loadingMore} style={styles.footer} />
+  }
 
   //Screen
   if (loading) return <AppLoading visible={loading} />
@@ -40,6 +72,11 @@ const UserListScreen = ({ navigation, routes }) => {
             />
           )
         }}
+        refreshing={refreshing}
+        onRefresh={handleRefresh}
+        ListFooterComponent={footerComponent}
+        onEndReached={() => { (users.length !== 0) && setPage(page + 1); }}
+        onEndReachedThreshold={0}
       />
     </SafeAreaView>
   )
@@ -49,6 +86,9 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
+  },
+  footer: {
+    marginVertical: 20
   }
 })
 
