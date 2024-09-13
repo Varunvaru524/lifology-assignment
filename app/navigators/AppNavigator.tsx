@@ -13,7 +13,7 @@ import { createNativeStackNavigator, NativeStackScreenProps } from "@react-navig
 import { observer } from "mobx-react-lite"
 import React from "react"
 import { useColorScheme } from "react-native"
-import * as Screens from "app/screens"
+// import * as Screens from "app/screens"
 import UserListScreen from 'app/screens/UserListScreen'
 import UserPostsScreen from 'app/screens/UserPostsScreen'
 import Config from "../config"

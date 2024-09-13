@@ -1,5 +1,4 @@
 import { View, Text, StyleSheet, Image, TouchableWithoutFeedback } from "react-native"
-import caretRight from '../../assets/icons/caretRight.png'
 import { useNavigation } from "@react-navigation/native"
 
 const UserInfoCard = ({ userId, image, name, designetion, company }) => {
@@ -24,7 +23,7 @@ const UserInfoCard = ({ userId, image, name, designetion, company }) => {
             </View>
           </View>
           <Image
-            source={caretRight}
+            source={require('../../assets/icons/caretRight.png')}
             style={styles.caretRigth}
           />
         </View>
