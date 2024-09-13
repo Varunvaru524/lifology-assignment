@@ -60,9 +60,9 @@ const AppStack = observer(function AppStack() {
     <Stack.Navigator
       screenOptions={{ headerShown: false, navigationBarColor: colors.background }}
     >
-          {/* <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} /> */}
-          <Stack.Screen name="UserListScreen" component={UserListScreen} />
-          <Stack.Screen name="UserPostsScreen" component={UserPostsScreen} />
+      {/* <Stack.Screen name="Welcome" component={Screens.WelcomeScreen} /> */}
+      <Stack.Screen name="UserListScreen" component={UserListScreen} />
+      <Stack.Screen name="UserPostsScreen" component={UserPostsScreen} options={{ headerShown: true }} />
       {/** 🔥 Your screens go here */}
       {/* IGNITE_GENERATOR_ANCHOR_APP_STACK_SCREENS */}
     </Stack.Navigator>
@@ -70,7 +70,7 @@ const AppStack = observer(function AppStack() {
 })
 
 export interface NavigationProps
-  extends Partial<React.ComponentProps<typeof NavigationContainer>> {}
+  extends Partial<React.ComponentProps<typeof NavigationContainer>> { }
 
 export const AppNavigator = observer(function AppNavigator(props: NavigationProps) {
   const colorScheme = useColorScheme()

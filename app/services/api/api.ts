@@ -58,7 +58,6 @@ export const getUsers = (page = 0) => {
 }
 
 
-export const getPosts = (payload) => {
-  const { userId } = payload || {}
+export const getPosts = (userId) => {
   return axios.get(`https://dummyjson.com/users/${userId}/posts`)
 }
