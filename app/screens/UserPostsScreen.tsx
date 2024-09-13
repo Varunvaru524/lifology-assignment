@@ -1,5 +1,6 @@
-import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native'
 import { useEffect, useState } from 'react'
+import constants from 'expo-constants'
 import Post from 'app/components/Post'
 import AppLoading from 'app/components/AppLoading'
 import EmptyStateComponent from 'app/components/EmptyStateComponent'
@@ -62,7 +63,7 @@ const UserPostsScreen = ({ navigation, route }) => {
   if (loading) return <AppLoading visible={loading} />
   if (posts.length === 0) return <EmptyStateComponent title='No postes are posted by this user' />
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={posts}
         keyExtractor={(item, index) => item.id}
@@ -81,7 +82,7 @@ const UserPostsScreen = ({ navigation, route }) => {
         onEndReached={() => { (posts.length !== 0) && setPage(page + 1); }}
         onEndReachedThreshold={0}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
+    marginTop: constants.statusBarHeight
   },
   footer: {
     marginVertical: 20

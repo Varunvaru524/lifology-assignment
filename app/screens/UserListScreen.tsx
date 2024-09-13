@@ -1,5 +1,6 @@
-import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet } from 'react-native'
+import { ActivityIndicator, FlatList, StyleSheet, View } from 'react-native'
 import { useEffect, useState } from 'react'
+import constants from 'expo-constants'
 import UserInfoCard from 'app/components/UserInfoCard'
 import AppLoading from 'app/components/AppLoading'
 import EmptyStateComponent from 'app/components/EmptyStateComponent'
@@ -60,7 +61,7 @@ const UserListScreen = ({ navigation, route }) => {
   if (loading) return <AppLoading visible={loading} />
   if (users.length === 0) return <EmptyStateComponent title='No users found' />
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <FlatList
         data={users}
         keyExtractor={(item, index) => item.id}
@@ -81,7 +82,7 @@ const UserListScreen = ({ navigation, route }) => {
         onEndReached={() => { (users.length !== 0) && setPage(page + 1); }}
         onEndReachedThreshold={0}
       />
-    </SafeAreaView>
+    </View>
   )
 }
 
@@ -89,6 +90,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: 'white',
     flex: 1,
+    marginTop: constants.statusBarHeight
   },
   footer: {
     marginVertical: 20
