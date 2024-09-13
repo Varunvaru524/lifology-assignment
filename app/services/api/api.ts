@@ -58,6 +58,8 @@ export const getUsers = (page = 0) => {
 }
 
 
-export const getPosts = (userId) => {
-  return axios.get(`https://dummyjson.com/users/${userId}/posts`)
+export const getPosts = (userId, page = 0) => {
+  const limit = 10
+  const skip = (page - 1) * limit;
+  return axios.get(`https://dummyjson.com/users/${userId}/posts`, { params: { limit: limit, skip: skip } })
 }

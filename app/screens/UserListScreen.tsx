@@ -1,8 +1,9 @@
-import AppLoading from 'app/components/AppLoading'
-import UserInfoCard from 'app/components/UserInfoCard'
-import { getUsers } from 'app/services/api'
-import { useEffect, useState } from 'react'
 import { ActivityIndicator, FlatList, SafeAreaView, StyleSheet } from 'react-native'
+import { useEffect, useState } from 'react'
+import UserInfoCard from 'app/components/UserInfoCard'
+import AppLoading from 'app/components/AppLoading'
+import EmptyStateComponent from 'app/components/EmptyStateComponent'
+import { getUsers } from 'app/services/api'
 
 const UserListScreen = ({ navigation, route }) => {
   const [users, setUsers] = useState([])
@@ -57,6 +58,7 @@ const UserListScreen = ({ navigation, route }) => {
 
   //Screen
   if (loading) return <AppLoading visible={loading} />
+  if (users.length === 0) return <EmptyStateComponent title='No users found' />
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
